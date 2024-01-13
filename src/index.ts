@@ -1,5 +1,7 @@
-const joke = document.querySelector(".joke");
-const button = document.querySelector("button");
+
+document.addEventListener('DOMContentLoaded', () => {
+  const joke = document.querySelector(".joke");
+  const button = document.querySelector(".btn");
 
 const headers = new Headers({
   'Accept': 'application/json'
@@ -20,6 +22,10 @@ function getJoke() {
   })
   .then(data => {
     console.log(data);
+    const jokeText = data.joke
+    if (joke) {
+      joke.textContent = jokeText;
+    }
   })
   .catch(error => {
     console.log(error);
@@ -28,6 +34,10 @@ function getJoke() {
 
 getJoke();
 
-function printJoke(){
-  
+if (button) {
+button.addEventListener('click', (e) => {
+  getJoke();
+})
 }
+
+});

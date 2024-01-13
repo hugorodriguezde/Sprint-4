@@ -1,27 +1,38 @@
-var joke = document.querySelector(".joke");
-var button = document.querySelector("button");
-var headers = new Headers({
-    'Accept': 'application/json'
-});
-var apiUrl = 'https://icanhazdadjoke.com/';
-function getJoke() {
-    fetch(apiUrl, {
-        method: 'GET',
-        headers: headers
-    })
-        .then(function (res) {
-        if (!res.ok) {
-            throw new Error("Error: ".concat(res.status, " - ").concat(res.statusText));
-        }
-        return res.json();
-    })
-        .then(function (data) {
-        console.log(data);
-    })
-        .catch(function (error) {
-        console.log(error);
+"use strict";
+document.addEventListener('DOMContentLoaded', () => {
+    const joke = document.querySelector(".joke");
+    const button = document.querySelector(".btn");
+    const headers = new Headers({
+        'Accept': 'application/json'
     });
-}
-getJoke();
-function printJoke() {
-}
+    const apiUrl = 'https://icanhazdadjoke.com/';
+    function getJoke() {
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: headers
+        })
+            .then((res) => {
+            if (!res.ok) {
+                throw new Error(`Error: ${res.status} - ${res.statusText}`);
+            }
+            return res.json();
+        })
+            .then(data => {
+            console.log(data);
+            const jokeText = data.joke;
+            if (joke) {
+                joke.textContent = jokeText;
+            }
+        })
+            .catch(error => {
+            console.log(error);
+        });
+    }
+    getJoke();
+    if (button) {
+        button.addEventListener('click', (e) => {
+            getJoke();
+        });
+    }
+});
+//# sourceMappingURL=index.js.map
