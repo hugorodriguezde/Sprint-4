@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const score = document.querySelectorAll(".score");
     const repportAcudits = [];
     let jokeScore = 0;
+    let jokeText = "";
     const headers = new Headers({
         'Accept': 'application/json'
     });
+    let date = new Date().toISOString();
     const apiUrl = 'https://icanhazdadjoke.com/';
     const chuckApiUrl = 'https://api.chucknorris.io/jokes/random';
     function getJoke() {
@@ -23,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
             .then(data => {
             console.log(data);
-            const jokeText = data.joke;
+            jokeText = data.joke;
             if (joke) {
                 joke.textContent = jokeText;
             }
@@ -45,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
             .then(data => {
             console.log(data);
-            const chuckJokeText = data.value;
+            jokeText = data.value;
             if (joke) {
-                joke.textContent = chuckJokeText;
+                joke.textContent = jokeText;
             }
         })
             .catch(error => {
@@ -61,17 +63,26 @@ document.addEventListener('DOMContentLoaded', () => {
             pressed += 1;
             if (pressed % 2 != 0) {
                 getChuckJoke();
+                if (jokeScore) {
+                    jokeRepport(jokeScore);
+                }
             }
             else {
                 getJoke();
+                if (jokeScore) {
+                    jokeRepport(jokeScore);
+                }
             }
         });
     }
     function jokeRepport(score) {
+        repportAcudits.push({ joke: jokeText, score: jokeScore, date: date });
+        console.log(repportAcudits);
+        jokeScore = 0;
     }
-    score.forEach((button, index) => {
+    score.forEach((button, i) => {
         button.addEventListener('click', () => {
-            jokeScore = index + 1;
+            jokeScore = i + 1;
         });
     });
 });
