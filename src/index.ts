@@ -96,3 +96,6 @@ score.forEach((button, i) => {
 })
 
   });
+
+
+
