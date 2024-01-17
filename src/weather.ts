@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   let weatherUrl = "";
-  let celsius = -272.15;
   const weather = document.getElementById("weather");
 
   if (navigator.geolocation) {
@@ -32,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           });
       }
-
       getWeather();
     });
   }
