@@ -2,9 +2,9 @@
 
 ## 💻  Como compilar el proyecto
 
-1. Clona este repositorio
-2. Ejecuta `npm install` para instalar todas las dependencias
-3. Abre el archivo `index.html` en tu navegador para visualizar el proyecto
+1. Clona este repositorio con `git clone https://github.com/hugorodriguezde/Sprint-4.git`.
+2. Ejecuta `npm install` para instalar todas las dependencias.
+3. Abre el archivo `index.html` en tu navegador para visualizar el proyecto.
 
 ## 🛠️ Tecnologías utilizadas
 
